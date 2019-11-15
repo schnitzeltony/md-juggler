@@ -1,0 +1,62 @@
+{
+	"unordered_list_default": {
+		"type"			:	"type_text_tree",
+		"level_str"		:	"  ",
+		"pattern" 		: 	"${level_str}* ${text}"
+	},
+
+	"unordered_list_3state_default": {
+		"type"			:	"type_text_tree_3_state",
+		"level_str"		:	"  ",
+		"pattern_noval"	: 	"${level_str}* <a style=\"color:lightgrey;\">${text}</a>",
+		"pattern_true"	: 	"${level_str}* <a style=\"color:green;\">${text}</a>",
+		"pattern_false"	: 	"${level_str}* <a style=\"color:red;\">${text}</a>"
+	},
+
+	"ordered_list_default": {
+		"type"			:	"type_text_tree",
+		"level_str"		:	"   ",
+		"pattern" 		: 	"${level_str}1. ${text}"
+	},
+
+	"ordered_list_3state_default": {
+		"type"			:	"type_text_tree_3_state",
+		"level_str"		:	"   ",
+		"pattern_noval"	: 	"${level_str}1. <a style=\"color:lightgrey;\">${text}",
+		"pattern_true"	: 	"${level_str}1. <a style=\"color:green;\">${text}",
+		"pattern_false"	: 	"${level_str}1. <a style=\"color:red;\">${text}"
+	},
+
+	"task_list_default": {
+		"type"			:	"type_text_tree_2_state",
+		"level_str"		: 	"  ",
+		"pattern_true"	: 	"${level_str}- [x] ${text}",
+		"pattern_false"	: 	"${level_str}- [ ] ${text}"
+	},
+
+	"task_list_3state_default": {
+		"type"			:	"type_text_tree_3_state",
+		"level_str" 	:	"  ",
+		"pattern_noval"	: 	"${level_str}- [ ] ${text}",
+		"pattern_true"	: 	"${level_str}- [x] <a style=\"color:green;\"> ${text}</a>",
+		"pattern_false"	: 	"${level_str}- [x] <a style=\"color:red;\"> ${text}</a>"
+	},
+
+	"header_default": {
+		"type"					:	"type_text_header",
+		"level_str"				:	"#",
+		"pattern" 				: 	"${level_str} ${text}"
+	},
+
+	"table_default": {
+		"type"					:	"type_table",
+		"pattern_header_text"	:	" ${text} ",
+		"pattern_col_sep"		:	" | ",
+		"pattern_header_footer" :	" -- ",
+		"pattern_entry" 		:	" ${text} ",
+		"pattern_entry_noval"	:	" <a style=\"color:lightgrey;\">${text}</a> ",
+		"pattern_entry_true"	:	" <a style=\"color:green;\">${text}</a> ",
+		"pattern_entry_false"	:	" <a style=\"color:red;\">${text}</a> ",
+		"pattern_entry_1st_col"	:	" <b>${text}</b> "
+	}
+}
