@@ -2,6 +2,12 @@ add_library(MdJuggler
     SHARED
         # for moc & qtcreator to have it in-tree
         ${CMAKE_SOURCE_DIR}/include/mdjuggler.h
+        ${CMAKE_SOURCE_DIR}/include/abstractrenderitemrenderer.h
+        ${CMAKE_SOURCE_DIR}/include/abstractrenderitemdelegate.h
+        abstractrenderitemdelegate_p.h
+        abstractrenderitemdelegate.cpp
+        abstractrenderitemrenderer_p.h
+        abstractrenderitemrenderer.cpp
         resources.qrc
 )
 add_library(MdJuggler::MdJuggler ALIAS MdJuggler)
@@ -42,6 +48,8 @@ target_compile_definitions(MdJuggler PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:Rel
 target_link_libraries(MdJuggler
     PRIVATE
         Qt5::Core
+        # ask linker to help us finding unresolved symbols
+        "-Wl,--no-undefined"
 )
 
 # install library
