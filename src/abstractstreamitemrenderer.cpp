@@ -1,6 +1,8 @@
 #include "abstractstreamitemrenderer.h"
 #include "abstractstreamitemrenderer_p.h"
+#include "abstractstreamitemdelegate.h"
 #include <QAbstractItemModel>
+#include <QItemSelectionModel>
 
 QT_BEGIN_NAMESPACE
 
@@ -35,8 +37,6 @@ AbstractStreamItemRendererPrivate::~AbstractStreamItemRendererPrivate()
 {
 }
 
-
-
 AbstractStreamItemRenderer::AbstractStreamItemRenderer(QObject *parent) :
     QObject(parent)
 {
@@ -57,13 +57,6 @@ void AbstractStreamItemRenderer::setModel(QAbstractItemModel *model)
     Q_D(AbstractStreamItemRenderer);
     if (model == d->model)
         return;
-    if (d->model && d->model != qEmptyModel()) {
-        // TODO cleanup before we change model
-    }
-    d->model = (model ? model : qEmptyModel());
-    if (d->model != qEmptyModel()) {
-        // TODO connections?
-    }
 
 }
 
@@ -71,6 +64,54 @@ QAbstractItemModel *AbstractStreamItemRenderer::model() const
 {
     Q_D(const AbstractStreamItemRenderer);
     return (d->model == qEmptyModel() ? nullptr : d->model);
+}
+
+void AbstractStreamItemRenderer::setSelectionModel(QItemSelectionModel *selectionModel)
+{
+    // ### if the given model is null, we should use the original selection model
+    Q_ASSERT(selectionModel);
+    Q_D(AbstractStreamItemRenderer);
+
+    if (Q_UNLIKELY(selectionModel->model() != d->model)) {
+        qWarning("AbstractStreamItemRenderer::setSelectionModel() failed: "
+                 "Trying to set a selection model, which works on "
+                 "a different model than the view.");
+        return;
+    }
+
+    d->selectionModel = selectionModel;
+}
+
+QItemSelectionModel *AbstractStreamItemRenderer::selectionModel() const
+{
+    Q_D(const AbstractStreamItemRenderer);
+    return d->selectionModel;
+}
+
+void AbstractStreamItemRenderer::setItemDelegate(AbstractStreamItemDelegate *delegate)
+{
+    Q_D(AbstractStreamItemRenderer);
+    if (delegate == d->itemDelegate)
+        return;
+    d->itemDelegate = delegate;
+}
+
+AbstractStreamItemDelegate *AbstractStreamItemRenderer::itemDelegate() const
+{
+    Q_D(const AbstractStreamItemRenderer);
+    return d->itemDelegate;
+}
+
+void AbstractStreamItemRenderer::setSelectionMode(AbstractStreamItemRenderer::SelectionMode mode)
+{
+    Q_D(AbstractStreamItemRenderer);
+    d->selectionMode = mode;
+}
+
+AbstractStreamItemRenderer::SelectionMode AbstractStreamItemRenderer::selectionMode() const
+{
+    Q_D(const AbstractStreamItemRenderer);
+    return d->selectionMode;
 }
 
 void AbstractStreamItemRenderer::setAlternatingRowColors(bool enable)
@@ -99,19 +140,6 @@ QModelIndex AbstractStreamItemRenderer::rootIndex() const
 {
     Q_D(const AbstractStreamItemRenderer);
     return QModelIndex(d->root);
-}
-
-void AbstractStreamItemRenderer::setCurrentIndex(const QModelIndex &index)
-{
-    Q_D(AbstractStreamItemRenderer);
-    /*if (d->selectionModel && (!index.isValid() || d->isIndexEnabled(index))) {
-        QItemSelectionModel::SelectionFlags command = selectionCommand(index, 0);
-        d->selectionModel->setCurrentIndex(index, command);
-        d->currentIndexSet = true;
-        if ((command & QItemSelectionModel::Current) == 0)
-            d->currentSelectionStartIndex = index;
-    }*/
-
 }
 
 QT_END_NAMESPACE

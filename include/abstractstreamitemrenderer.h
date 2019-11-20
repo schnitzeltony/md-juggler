@@ -8,7 +8,7 @@ QT_BEGIN_NAMESPACE
 
 class QAbstractItemModel;
 class QItemSelectionModel;
-class QAbstractStreamItemDelegate;
+class AbstractStreamItemDelegate;
 
 // clang: be quiet
 QT_WARNING_DISABLE_CLANG("-Wshadow-field")
@@ -18,6 +18,16 @@ class MDJUGGLER_EXPORT AbstractStreamItemRenderer : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool alternatingRowColors READ alternatingRowColors WRITE setAlternatingRowColors)
+    Q_PROPERTY(SelectionMode selectionMode READ selectionMode WRITE setSelectionMode)
+
+public:
+    // Just how to render
+    enum SelectionMode {
+        NoSelection,
+        SingleSelection,
+        MultiSelection
+    };
+    Q_ENUM(SelectionMode)
 
     explicit AbstractStreamItemRenderer(QObject *parent = nullptr);
     ~AbstractStreamItemRenderer();
@@ -25,29 +35,35 @@ class MDJUGGLER_EXPORT AbstractStreamItemRenderer : public QObject
     virtual void setModel(QAbstractItemModel *model);
     QAbstractItemModel *model() const;
 
-    QByteArray render() const;
+    // we cannot select but can render based upon other view's selection
+    virtual void setSelectionModel(QItemSelectionModel *selectionModel);
+    QItemSelectionModel *selectionModel() const;
 
-    void setItemDelegate(QAbstractStreamItemDelegate *delegate);
-    QAbstractStreamItemDelegate *itemDelegate() const;
+    void setSelectionMode(AbstractStreamItemRenderer::SelectionMode mode);
+    AbstractStreamItemRenderer::SelectionMode selectionMode() const;
 
-    QModelIndex currentIndex() const;
+    // do the job
+    virtual int render() const = 0;
+    QByteArray getRenderedData() const;
+
+    void setItemDelegate(AbstractStreamItemDelegate *delegate);
+    AbstractStreamItemDelegate *itemDelegate() const;
+    AbstractStreamItemDelegate *itemDelegate(const QModelIndex &index) const;
+
     QModelIndex rootIndex() const;
 
+    void setItemDelegateForRow(int row, AbstractStreamItemDelegate *delegate);
+    AbstractStreamItemDelegate *itemDelegateForRow(int row) const;
+
+    void setItemDelegateForColumn(int column, AbstractStreamItemDelegate *delegate);
+    AbstractStreamItemDelegate *itemDelegateForColumn(int column) const;
+
+    // TODO remove ???
     void setAlternatingRowColors(bool enable);
     bool alternatingRowColors() const;
 
-    void setItemDelegateForRow(int row, QAbstractStreamItemDelegate *delegate);
-    QAbstractStreamItemDelegate *itemDelegateForRow(int row) const;
-
-    void setItemDelegateForColumn(int column, QAbstractStreamItemDelegate *delegate);
-    QAbstractStreamItemDelegate *itemDelegateForColumn(int column) const;
-
-    QAbstractStreamItemDelegate *itemDelegate(const QModelIndex &index) const;
-
 public slots:
     virtual void setRootIndex(const QModelIndex &index);
-
-    void setCurrentIndex(const QModelIndex &index);
 
 protected:
     const QScopedPointer<AbstractStreamItemRendererPrivate> d_ptr;

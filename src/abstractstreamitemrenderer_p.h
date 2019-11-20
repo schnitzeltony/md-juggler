@@ -4,7 +4,6 @@
 #include "abstractstreamitemrenderer.h"
 #include "abstractstreamitemdelegate.h"
 #include <QPointer>
-#include <QMap>
 #include <QPersistentModelIndex>
 
 QT_BEGIN_NAMESPACE
@@ -19,15 +18,16 @@ public:
 
     QAbstractItemModel *model;
     QPointer<AbstractStreamItemDelegate> itemDelegate;
-    QMap<int, QPointer<AbstractStreamItemDelegate> > rowDelegates;
-    QMap<int, QPointer<AbstractStreamItemDelegate> > columnDelegates;
+    QMap<int, QPointer<AbstractStreamItemDelegate>> rowDelegates;
+    QMap<int, QPointer<AbstractStreamItemDelegate>> columnDelegates;
+    QPointer<QItemSelectionModel> selectionModel;
+    AbstractStreamItemRenderer::SelectionMode selectionMode;
 
     QPersistentModelIndex root;
 
-    bool alternatingColors;
+    bool alternatingColors; // TODO remove???
 protected:
     AbstractStreamItemRenderer *q_ptr;
-
 };
 
 QT_END_NAMESPACE
