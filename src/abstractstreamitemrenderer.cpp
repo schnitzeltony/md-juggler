@@ -1,5 +1,5 @@
-#include "abstractrenderitemrenderer.h"
-#include "abstractrenderitemrenderer_p.h"
+#include "abstractstreamitemrenderer.h"
+#include "abstractstreamitemrenderer_p.h"
 #include <QAbstractItemModel>
 
 QT_BEGIN_NAMESPACE
@@ -24,37 +24,37 @@ public:
 Q_GLOBAL_STATIC(QEmptyItemModel, qEmptyModel)
 
 
-AbstractRenderItemRendererPrivate::AbstractRenderItemRendererPrivate(AbstractRenderItemRenderer *pPublic) :
+AbstractStreamItemRendererPrivate::AbstractStreamItemRendererPrivate(AbstractStreamItemRenderer *pPublic) :
     model(qEmptyModel()),
     alternatingColors(false),
     q_ptr(pPublic)
 {
 }
 
-AbstractRenderItemRendererPrivate::~AbstractRenderItemRendererPrivate()
+AbstractStreamItemRendererPrivate::~AbstractStreamItemRendererPrivate()
 {
 }
 
 
 
-AbstractRenderItemRenderer::AbstractRenderItemRenderer(QObject *parent) :
+AbstractStreamItemRenderer::AbstractStreamItemRenderer(QObject *parent) :
     QObject(parent)
 {
 }
 
-AbstractRenderItemRenderer::AbstractRenderItemRenderer(AbstractRenderItemRendererPrivate &dd, QObject *parent) :
+AbstractStreamItemRenderer::AbstractStreamItemRenderer(AbstractStreamItemRendererPrivate &dd, QObject *parent) :
     QObject(parent), d_ptr(&dd)
 {
 
 }
 
-AbstractRenderItemRenderer::~AbstractRenderItemRenderer()
+AbstractStreamItemRenderer::~AbstractStreamItemRenderer()
 {
 }
 
-void AbstractRenderItemRenderer::setModel(QAbstractItemModel *model)
+void AbstractStreamItemRenderer::setModel(QAbstractItemModel *model)
 {
-    Q_D(AbstractRenderItemRenderer);
+    Q_D(AbstractStreamItemRenderer);
     if (model == d->model)
         return;
     if (d->model && d->model != qEmptyModel()) {
@@ -67,27 +67,27 @@ void AbstractRenderItemRenderer::setModel(QAbstractItemModel *model)
 
 }
 
-QAbstractItemModel *AbstractRenderItemRenderer::model() const
+QAbstractItemModel *AbstractStreamItemRenderer::model() const
 {
-    Q_D(const AbstractRenderItemRenderer);
+    Q_D(const AbstractStreamItemRenderer);
     return (d->model == qEmptyModel() ? nullptr : d->model);
 }
 
-void AbstractRenderItemRenderer::setAlternatingRowColors(bool enable)
+void AbstractStreamItemRenderer::setAlternatingRowColors(bool enable)
 {
-    Q_D(AbstractRenderItemRenderer);
+    Q_D(AbstractStreamItemRenderer);
     d->alternatingColors = enable;
 }
 
-bool AbstractRenderItemRenderer::alternatingRowColors() const
+bool AbstractStreamItemRenderer::alternatingRowColors() const
 {
-    Q_D(const AbstractRenderItemRenderer);
+    Q_D(const AbstractStreamItemRenderer);
     return d->alternatingColors;
 }
 
-void AbstractRenderItemRenderer::setRootIndex(const QModelIndex &index)
+void AbstractStreamItemRenderer::setRootIndex(const QModelIndex &index)
 {
-    Q_D(AbstractRenderItemRenderer);
+    Q_D(AbstractStreamItemRenderer);
     if (Q_UNLIKELY(index.isValid() && index.model() != d->model)) {
         qWarning("QAbstractItemView::setRootIndex failed : index must be from the currently set model");
         return;
@@ -95,15 +95,15 @@ void AbstractRenderItemRenderer::setRootIndex(const QModelIndex &index)
     d->root = index;
 }
 
-QModelIndex AbstractRenderItemRenderer::rootIndex() const
+QModelIndex AbstractStreamItemRenderer::rootIndex() const
 {
-    Q_D(const AbstractRenderItemRenderer);
+    Q_D(const AbstractStreamItemRenderer);
     return QModelIndex(d->root);
 }
 
-void AbstractRenderItemRenderer::setCurrentIndex(const QModelIndex &index)
+void AbstractStreamItemRenderer::setCurrentIndex(const QModelIndex &index)
 {
-    Q_D(AbstractRenderItemRenderer);
+    Q_D(AbstractStreamItemRenderer);
     /*if (d->selectionModel && (!index.isValid() || d->isIndexEnabled(index))) {
         QItemSelectionModel::SelectionFlags command = selectionCommand(index, 0);
         d->selectionModel->setCurrentIndex(index, command);

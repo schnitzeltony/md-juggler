@@ -2,12 +2,12 @@ add_library(MdJuggler
     SHARED
         # for moc & qtcreator to have it in-tree
         ${CMAKE_SOURCE_DIR}/include/mdjuggler.h
-        ${CMAKE_SOURCE_DIR}/include/abstractrenderitemrenderer.h
-        ${CMAKE_SOURCE_DIR}/include/abstractrenderitemdelegate.h
-        abstractrenderitemdelegate_p.h
-        abstractrenderitemdelegate.cpp
-        abstractrenderitemrenderer_p.h
-        abstractrenderitemrenderer.cpp
+        ${CMAKE_SOURCE_DIR}/include/abstractstreamitemrenderer.h
+        ${CMAKE_SOURCE_DIR}/include/abstractstreamitemdelegate.h
+        abstractstreamitemdelegate_p.h
+        abstractstreamitemdelegate.cpp
+        abstractstreamitemrenderer_p.h
+        abstractstreamitemrenderer.cpp
         resources.qrc
 )
 add_library(MdJuggler::MdJuggler ALIAS MdJuggler)
