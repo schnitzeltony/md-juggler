@@ -4,6 +4,7 @@ add_library(MdJuggler
         ${CMAKE_SOURCE_DIR}/include/mdjuggler.h
         ${CMAKE_SOURCE_DIR}/include/abstractstreamitemrenderer.h
         ${CMAKE_SOURCE_DIR}/include/abstractstreamitemdelegate.h
+        abstractstreamitemdelegate_p.h
         abstractstreamitemdelegate.cpp
         abstractstreamitemrenderer_p.h
         abstractstreamitemrenderer.cpp

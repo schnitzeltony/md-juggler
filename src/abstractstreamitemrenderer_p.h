@@ -3,8 +3,8 @@
 
 #include "abstractstreamitemrenderer.h"
 #include "abstractstreamitemdelegate.h"
-#include <QPointer>
 #include <QPersistentModelIndex>
+#include <QPointer>
 
 QT_BEGIN_NAMESPACE
 

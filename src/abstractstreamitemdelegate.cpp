@@ -1,10 +1,38 @@
 #include "abstractstreamitemdelegate.h"
+#include "abstractstreamitemdelegate_p.h"
 #include <QAbstractItemModel>
 
 QT_BEGIN_NAMESPACE
 
+AbstractStreamItemDelegatePrivate::AbstractStreamItemDelegatePrivate(AbstractStreamItemDelegate *pPublic) :
+    q_ptr(pPublic)
+{
+}
+
+AbstractStreamItemDelegatePrivate::~AbstractStreamItemDelegatePrivate()
+{
+}
+
+int AbstractStreamItemDelegatePrivate::calcItemLevel(const QPersistentModelIndex &viewRootIndex, const QModelIndex &index)
+{
+    int level = 0;
+    if(index.isValid() && index.model() == viewRootIndex.model()) {
+        QModelIndex modelIndexTemp = index;
+        while(modelIndexTemp.parent() != viewRootIndex) {
+            modelIndexTemp = modelIndexTemp.parent();
+            ++level;
+        }
+    }
+    return level;
+}
+
 AbstractStreamItemDelegate::AbstractStreamItemDelegate(QObject *parent) :
     QObject(parent)
+{
+}
+
+AbstractStreamItemDelegate::AbstractStreamItemDelegate(AbstractStreamItemDelegatePrivate &dd, QObject *parent) :
+    QObject(parent), d_ptr(&dd)
 {
 }
 

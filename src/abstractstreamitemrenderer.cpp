@@ -3,6 +3,7 @@
 #include "abstractstreamitemdelegate.h"
 #include <QAbstractItemModel>
 #include <QItemSelectionModel>
+#include <QMap>
 
 QT_BEGIN_NAMESPACE
 
@@ -140,6 +141,32 @@ QModelIndex AbstractStreamItemRenderer::rootIndex() const
 {
     Q_D(const AbstractStreamItemRenderer);
     return QModelIndex(d->root);
+}
+
+void AbstractStreamItemRenderer::setItemDelegateForRow(int row, AbstractStreamItemDelegate *delegate)
+{
+    Q_D(AbstractStreamItemRenderer);
+    // no signal/slot -> just replace
+    d->rowDelegates[row] = delegate;
+}
+
+AbstractStreamItemDelegate *AbstractStreamItemRenderer::itemDelegateForRow(int row) const
+{
+    Q_D(const AbstractStreamItemRenderer);
+    return d->rowDelegates.value(row, nullptr);
+}
+
+void AbstractStreamItemRenderer::setItemDelegateForColumn(int column, AbstractStreamItemDelegate *delegate)
+{
+    Q_D(AbstractStreamItemRenderer);
+    // no signal/slot -> just replace
+    d->columnDelegates[column] = delegate;
+}
+
+AbstractStreamItemDelegate *AbstractStreamItemRenderer::itemDelegateForColumn(int column) const
+{
+    Q_D(const AbstractStreamItemRenderer);
+    return d->columnDelegates.value(column, nullptr);
 }
 
 QT_END_NAMESPACE
