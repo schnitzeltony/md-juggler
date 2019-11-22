@@ -89,6 +89,12 @@ QByteArray MdStreamDelegate::render(const QModelIndex &viewRootIndex, const QMod
             case MDTableHeaderAndColum:
                 renderedData = QByteArrayLiteral("<hidden></hidden>");
                 break;
+            case MDTableFirstRowSepearator:
+                renderedData = QByteArrayLiteral("----");
+                if(index.column() > 0) {
+                    renderedData.prepend(" | ");
+                }
+                break;
             case MDTableColumn:
                 renderedData = QByteArrayLiteral("<b>") + displayData + QByteArrayLiteral("</b>");
                 if(index.column() > 0) {

@@ -17,6 +17,7 @@ public:
         MDOrderedList,
         MDTableHeader,
         MDTableHeaderAndColum,  // corner
+        MDTableFirstRowSepearator,
         MDTableColumn,
         MDTableEntry
     };
