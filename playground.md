@@ -1,31 +1,31 @@
 # Tasklist
-- [x] <a style="color:red;">Performed failed</a>
-  - [x] <a style="color:green;">Performed passed</a>
+- [x] <font color="red">Performed failed</font>
+  - [x] <font color="green">Performed passed</font>
 - [ ] Not performed
 
 # Unordered list
 * list entry 1
-* <a style="color:red;">list entry 2</a>
+* <font color="red">list entry 2</font>
   * list entry2.1
-  * <a style="color:green;">list entry 2.2</a>
-* <a style="color:lightgrey;">list entry 3</a>
+  * <a style=<font color="green">list entry 2.2</font>
+* <font color="lightgrey">list entry 3</font>
 
 # Ordered list
 1. Item 1
-1. <a style="color:red;">Item 2</a>
+1. <font color="red">Item 2</font>
 1. Item 3
-   1. <a style="color:green;">Item 3a</a>
+   1. <font color="green">Item 3a</font>
    1. Item 3b
-      1. <a style="color:lightgray;">Item 3a</a>
+      1. <font color="lightgrey">Item 3a</font>
    1. Item 3b
 1. Item 1
 
 # Table
-First Header | Second Header | Third Header
------------- | ------------- | -------------
-<a style="color:red;">Content from cell 1</a> | Content from cell 2 | Content from cell 3
-<a style="color:lightgrey;">Content in the first column | Content in the second column
-Content in the first column | <a style="color:green;">Content in the second column</a>
+<hidden></hidden>  | First Header | Second Header | Third Header
+------ | ------------ | ------------- | -------------
+<b>HeaderColumn</b> | Content from cell 2 | Content from cell 3
+<b>HeaderColumn</b> | Content in the second column
+<b>HeaderColumn</b> | <font color="green">Content in the second column</font>
 
 
  <table>

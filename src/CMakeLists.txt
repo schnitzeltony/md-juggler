@@ -4,10 +4,13 @@ add_library(MdJuggler
         ${CMAKE_SOURCE_DIR}/include/mdjuggler.h
         ${CMAKE_SOURCE_DIR}/include/abstractstreamitemrenderer.h
         ${CMAKE_SOURCE_DIR}/include/abstractstreamitemdelegate.h
+        ${CMAKE_SOURCE_DIR}/include/mdstreamdelegate.h
         abstractstreamitemdelegate_p.h
         abstractstreamitemdelegate.cpp
         abstractstreamitemrenderer_p.h
         abstractstreamitemrenderer.cpp
+        mdstreamdelegate_p.h
+        mdstreamdelegate.cpp
         resources.qrc
 )
 add_library(MdJuggler::MdJuggler ALIAS MdJuggler)
@@ -48,6 +51,7 @@ target_compile_definitions(MdJuggler PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:Rel
 target_link_libraries(MdJuggler
     PRIVATE
         Qt5::Core
+        Qt5::Gui
         # ask linker to help us finding unresolved symbols
         "-Wl,--no-undefined"
 )

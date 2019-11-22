@@ -14,7 +14,7 @@ public:
     AbstractStreamItemDelegatePrivate(AbstractStreamItemDelegate *pPublic);
     virtual ~AbstractStreamItemDelegatePrivate();
 
-    int calcItemLevel(const QPersistentModelIndex &viewRootIndex, const QModelIndex &index);
+    int calcItemLevel(const QPersistentModelIndex &viewRootIndex, const QModelIndex &index) const;
 protected:
     AbstractStreamItemDelegate *q_ptr;
 };

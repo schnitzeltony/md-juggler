@@ -18,7 +18,7 @@ include(FeatureSummary)
 include(GNUInstallDirs)
 
 # qt5 libs
-find_package(Qt5 COMPONENTS Core CONFIG REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui CONFIG REQUIRED)
 
 add_subdirectory(src)
 

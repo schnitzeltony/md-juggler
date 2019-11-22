@@ -13,7 +13,7 @@ AbstractStreamItemDelegatePrivate::~AbstractStreamItemDelegatePrivate()
 {
 }
 
-int AbstractStreamItemDelegatePrivate::calcItemLevel(const QPersistentModelIndex &viewRootIndex, const QModelIndex &index)
+int AbstractStreamItemDelegatePrivate::calcItemLevel(const QPersistentModelIndex &viewRootIndex, const QModelIndex &index) const
 {
     int level = 0;
     if(index.isValid() && index.model() == viewRootIndex.model()) {
@@ -22,6 +22,9 @@ int AbstractStreamItemDelegatePrivate::calcItemLevel(const QPersistentModelIndex
             modelIndexTemp = modelIndexTemp.parent();
             ++level;
         }
+    }
+    else {
+        level = -1;
     }
     return level;
 }
