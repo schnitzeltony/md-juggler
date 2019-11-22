@@ -115,6 +115,12 @@ AbstractStreamItemRenderer::SelectionMode AbstractStreamItemRenderer::selectionM
     return d->selectionMode;
 }
 
+QByteArray AbstractStreamItemRenderer::getRenderedData() const
+{
+    Q_D(const AbstractStreamItemRenderer);
+
+}
+
 void AbstractStreamItemRenderer::setAlternatingRowColors(bool enable)
 {
     Q_D(AbstractStreamItemRenderer);

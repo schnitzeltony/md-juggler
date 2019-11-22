@@ -3,6 +3,8 @@
 
 #include "abstractstreamitemdelegate.h"
 
+QT_BEGIN_NAMESPACE
+
 class MdStreamDelegatePrivate;
 class MDJUGGLER_EXPORT MdStreamDelegate : public AbstractStreamItemDelegate
 {
@@ -31,5 +33,7 @@ protected:
     Q_DECLARE_PRIVATE(MdStreamDelegate)
     Q_DISABLE_COPY(MdStreamDelegate)
 };
+
+QT_END_NAMESPACE
 
 #endif // MDSTREAMDELEGATE_H

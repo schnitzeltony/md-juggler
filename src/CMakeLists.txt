@@ -5,12 +5,21 @@ add_library(MdJuggler
         ${CMAKE_SOURCE_DIR}/include/abstractstreamitemrenderer.h
         ${CMAKE_SOURCE_DIR}/include/abstractstreamitemdelegate.h
         ${CMAKE_SOURCE_DIR}/include/mdstreamdelegate.h
+        ${CMAKE_SOURCE_DIR}/include/mdstreamlistrenderer.h
+        ${CMAKE_SOURCE_DIR}/include/mdstreamtablerenderer.h
+        ${CMAKE_SOURCE_DIR}/include/mdstreamtreerenderer.h
         abstractstreamitemdelegate_p.h
         abstractstreamitemdelegate.cpp
         abstractstreamitemrenderer_p.h
         abstractstreamitemrenderer.cpp
         mdstreamdelegate_p.h
         mdstreamdelegate.cpp
+        mdstreamlistrenderer_p.h
+        mdstreamlistrenderer.cpp
+        mdstreamtablerenderer_p.h
+        mdstreamtablerenderer.cpp
+        mdstreamtreerenderer_p.h
+        mdstreamtreerenderer.cpp
         resources.qrc
 )
 add_library(MdJuggler::MdJuggler ALIAS MdJuggler)
