@@ -54,9 +54,9 @@ QByteArray MdStreamDelegate::render(const QModelIndex &viewRootIndex, const QMod
             QBrush brush = extraRoledata.value<QBrush>();
             if(brush.color().isValid()) {
                 QString colorName = brush.color().name();
-                QString strTagOpen = QString("<foo style=\"%1;\">").arg(colorName);
+                QString strTagOpen = QString("<foo style=\"background-color:%1;\">").arg(colorName);
                 displayData.prepend(strTagOpen.toUtf8());
-                displayData.append(QByteArrayLiteral("</font>"));
+                displayData.append(QByteArrayLiteral("</foo>"));
             }
         }
         QByteArray prefix;
