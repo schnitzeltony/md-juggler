@@ -96,7 +96,7 @@ QByteArray MdStreamDelegate::render(const QModelIndex &viewRootIndex, const QMod
                 }
                 break;
             case MDTableColumn:
-                renderedData = QByteArrayLiteral("<b>") + displayData + QByteArrayLiteral("</b>");
+                renderedData = QByteArrayLiteral("__") + displayData + QByteArrayLiteral("__");
                 if(index.column() > 0) {
                     renderedData.prepend(" | ");
                 }
