@@ -23,9 +23,9 @@
 # Table
 <hidden></hidden>  | First Header | Second Header | Third Header
 ------ | ------------ | ------------- | -------------
-<b>HeaderColumn</b> | Content from cell 2 | Content from cell 3
-<b>HeaderColumn</b> | Content in the second column
-<b>HeaderColumn</b> | <font color="green">Content in the second column</font>
+__HeaderColumn__ | Content from cell 2 | Content from cell 3
+__HeaderColumn__ | Content in the second column
+__HeaderColumn__ | <font color="green">Content in the second column</font>
 
 
  <table>
